@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% set bodyId = "page-create-point" %}
 {% block styles %}
-    <link rel="stylesheet" type="text/css" href="./css/create-point.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/create-point.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/modal.css"/>
 {% endblock styles %}
         
 {% block title %}
@@ -12,7 +13,7 @@
 
     {% include "partials/page-header.html" %}
 
-    <form action="">
+    <form action="/savepoint" method="POST">
 
         <h1>Cadastro do ponto de coleta</h1>
 
@@ -27,7 +28,7 @@
                 </div>
                 <div class="field">
                     <label for="name">Imagem da entidade</label>
-                    <input type="url" name="imagem" place="http://" required>
+                    <input type="url" name="image" place="http://" required>
                 </div>
             </div>    
 
@@ -69,32 +70,32 @@
                 <span>Selecione um ou mais itens de coletas</span>
             </legend>
             <div class="items-grid">
-                <li data-id="1">
+                <li data-id="Lâmpadas">
                     <img src="./assest/icones/lampadas.svg" alt="Lâmpadas">
                         <spam>Lâmpadas</spam>
                 </li>
 
-                <li data-id="2">
+                <li data-id="Pilhas e Baterias">
                     <img src="./assest/icones/baterias.svg" alt="Pilhas e Baterias">
                         <spam>Pilhas e Baterias</spam>
                 </li>
 
-                <li data-id="3">
+                <li data-id="Papéis e Papelão">
                     <img src="./assest/icones/papeis-papelao.svg" alt="Papéis e Papelão">
                         <spam>Papéis e Papelão</spam>
                 </li>
 
-                <li data-id="4">
+                <li data-id="Resíduos Eletrônicos">
                     <img src="./assest/icones/eletronicos.svg" alt="Resíduos Eletrônicos">
                         <spam>Resíduos Eletrônicos</spam>
                 </li>
 
-                <li data-id="5">
+                <li data-id="Resíduos Orgânicos">
                     <img src="./assest/icones/organicos.svg" alt="Resíduos Orgânicos">
                         <spam>Resíduos Orgânicos</spam>
                 </li>
 
-                <li data-id="6">
+                <li data-id="Óleos de Cozinha">
                     <img src="./assest/icones/oleo.svg" alt="Óleos de Cozinha">
                         <spam>Óleos de Cozinha</spam>
                 </li>
@@ -109,6 +110,14 @@
     </form>
 
 {% endblock divInterna %}  
+
+
+    {% if saved %}
+    {% block modal %}
+        {%include "partials/point-created.html"%}
+        {% endblock modal %}  
+    {% endif %}
+
 
 {% block script %}       
     <script src="./scripts/create-point.js"></script>
